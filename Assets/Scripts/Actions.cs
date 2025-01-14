@@ -2,7 +2,7 @@ using System;
 
 public static class Actions
 {
-    public static Action JumpEvent;
+    public static Action PerformedEvent;
 
     public static Action StartedEvent;
 

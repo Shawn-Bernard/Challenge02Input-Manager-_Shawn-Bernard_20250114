@@ -9,26 +9,20 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions
 //if not using "using static GameInput;" than it's GameInput.IGameplayActions
 {
     GameInput gameInput;
-    private void Start()
-    {
-        gameInput = new GameInput();
-        gameInput.Gameplay.Enable();
-        gameInput.Gameplay.SetCallbacks(this);
-    }
-    private void Update()
-    {
-        
-    }
     private void Awake()
     {
-        
+        //Making a new instance of gameinput
+        gameInput = new GameInput();
+        //Enable my new instance of gameinput
+        gameInput.Gameplay.Enable();
+        gameInput.Gameplay.SetCallbacks(this);
     }
     public void OnCrouch(InputAction.CallbackContext context)
     {
         //CrouchEvent?.Invoke();
         if (context.performed)
         {
-            Debug.Log("Crouch was pressed");
+            Debug.Log("if i added another action i would put it here");
         }
         
     }
@@ -36,14 +30,17 @@ public class InputManager : MonoBehaviour, GameInput.IGameplayActions
     public void OnJump(InputAction.CallbackContext context)
     {
         //JumpEvent?.Invoke();
+        //If the space bar is performed/pressed, I invoke the method stored in Actions.PerformedEvent
         if (context.performed)
         {
-            Actions.JumpEvent?.Invoke();
+            Actions.PerformedEvent?.Invoke();
         }
+        //If the space bar is performed/pressed, I invoke the method stored in Actions.StartedEvent
         if (context.started)
         {
             Actions.StartedEvent?.Invoke();
         }
+        //If the space bar is let go/canceled, I invoke the method stored in Actions.CanceledEvent
         if (context.canceled)
         {
             Actions.CanceledEvent?.Invoke();
